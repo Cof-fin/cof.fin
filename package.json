@@ -1,0 +1,11 @@
+{
+  "name": "hackathon-template",
+  "version": "1.0.0",
+  "scripts": {
+    "node": "pnpm -F contracts start",
+    "test": "pnpm -F contracts test",
+    "deploy:local": "pnpm -F contracts deploy:local",
+    "deploy:dev": "pnpm -F contracts deploy:dev",
+    "web": "pnpm -F app wagmi && pnpm -F app dev"
+  }
+}
