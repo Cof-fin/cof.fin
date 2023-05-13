@@ -52,6 +52,7 @@
 
 <style lang="scss">
   @import "../../styles/breakpoints";
+  @import "../../styles/colours";
   header-logo {
     /* Auto layout */
 
@@ -72,7 +73,8 @@
     padding-left: 80px;
     padding-right: 80px;
     height: 140px;
-
+    color: $accent_1;
+    background-color: $secondary_1;
     @media screen and (max-width: $large) {
       flex-direction: column;
       justify-content: center;
@@ -121,14 +123,14 @@
 
     /* Inside auto layout */
 
-    color: #000000;
+    color: $secondary_1;
     font-family: "Poppins";
     font-size: 1.5rem;
     font-weight: 400;
   }
 
   a {
-    color: #6f6f6f;
+    color: $accent_1;
     text-decoration: none;
   }
 

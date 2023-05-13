@@ -28,33 +28,37 @@
   </MaxWidthContainer>
 </main>
 
-<footer />
+<!-- <footer />
 
-<BottomNav />
+<BottomNav /> -->
 
-<style>
+<style lang="scss">
+  @import "../styles/colours";
   @font-face {
     font-family: "Figtree";
     src: url("../public/fonts/Figtree/Figtree-VariableFont_wght.ttf");
   }
 
   header {
-    background: #ffffff;
+    background: $primary;
     font-family: "Figtree";
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    background-color: $secondary_1;
   }
 
   main {
     font-family: "Figtree";
-    background: #ffffff;
-    color: #000000;
+    background: $primary;
+    color: $accent_1;
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     word-break: break-all;
+    padding-top: 40px;
   }
 
   footer {
