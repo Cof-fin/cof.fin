@@ -1,7 +1,7 @@
 <script lang="ts">
   import VerticalStack from "../../components/Stack/VerticalStack.svelte";
   import Tab from "../../components/Tab/Tab.svelte";
-  import { signature, typedSignature } from "../../stores";
+  import { activeTab, signature, typedSignature } from "../../stores";
   import USDCETHIcon from "../../public/images/ethusdc.png";
   import USDCIcon from "../../public/images/usdc24.png";
   import ETHIcon from "../../public/images/eth24.png";
@@ -11,6 +11,8 @@
   import RangeInput from "../../components/Input/RangeInput.svelte";
   import OptimalRangeInfo from "../../components/Display/OptimalRangeInfo.svelte";
   import DepositButton from "../../components/Button/DepositButton.svelte";
+  import WithdrawInfo from "../../components/Display/WithdrawInfo.svelte";
+  import WithdrawButton from "../../components/Button/WithdrawButton.svelte";
 </script>
 
 <VerticalStack>
@@ -18,15 +20,24 @@
   <Tab />
 
   <container>
-    <div><LineChart /></div>
-    <div class="deposit-form">
-      <InputBoxWithBalance icon={USDCIcon} name={"USDC"} balance={1000} />
-      <InputBoxWithBalance icon={ETHIcon} name={"ETH"} balance={1000} />
-      <Slider />
-      <RangeInput />
-      <OptimalRangeInfo />
-      <DepositButton />
-    </div>
+    {#if $activeTab === "Deposit"}
+      <div><LineChart /></div>
+      <div class="deposit-form">
+        <InputBoxWithBalance icon={USDCIcon} name={"USDC"} balance={1000} />
+        <InputBoxWithBalance icon={ETHIcon} name={"ETH"} balance={1000} />
+        <Slider />
+        <RangeInput />
+        <OptimalRangeInfo />
+        <DepositButton />
+      </div>
+    {:else if $activeTab === "Withdraw"}
+      <div><LineChart /></div>
+      <div class="deposit-form">
+        <InputBoxWithBalance icon={""} name={"cf-USDC/ETH"} balance={1000} />
+        <WithdrawInfo />
+        <WithdrawButton />
+      </div>
+    {:else if $activeTab === "Manage"}{/if}
   </container>
 </VerticalStack>
 

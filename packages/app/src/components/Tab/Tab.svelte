@@ -1,17 +1,17 @@
 <script lang="ts">
   import TabItem from "./TabItem.svelte";
+  import { activeTab } from "../../stores";
 
   export let tabs = ["Deposit", "Withdraw", "Manage"];
-  $: activeTab = "Deposit";
 
   const handleOnClick = (tab: string) => {
-    activeTab = tab;
+    $activeTab = tab;
   };
 </script>
 
 <container>
   {#each tabs as tab}
-    <TabItem name={tab} active={activeTab === tab} onClick={handleOnClick} />
+    <TabItem name={tab} active={$activeTab === tab} onClick={handleOnClick} />
   {/each}
 </container>
 

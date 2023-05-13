@@ -19,7 +19,9 @@
   <div class="input-header">
     <div class="input-name-wrapper">
       <input-header-text>{name}</input-header-text>
-      <img src={icon} alt="Icon" />
+      {#if icon}
+        <img src={icon} alt="Icon" />
+      {/if}
     </div>
     <div class="input-balance">
       <input-header-balance on:click={() => (value = balance)}

@@ -13,3 +13,5 @@ export const signature = writable<string>("");
 export const typedSignature = writable<string>("");
 
 export const input = writable<string>("");
+
+export const activeTab = writable<string>("Deposit");

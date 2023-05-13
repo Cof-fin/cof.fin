@@ -7,7 +7,7 @@
     linea_testnet,
     thundercore_testnet,
   } from "./chain";
-  import { sepolia, foundry } from "@wagmi/core/chains";
+  import { sepolia, foundry, goerli } from "@wagmi/core/chains";
   import { ethereumClient, wagmiClient, web3Modal, providers } from "../../stores";
   import { configureChains, createClient } from "@wagmi/core";
   import { publicProvider } from "@wagmi/core/providers/public";
@@ -19,6 +19,7 @@
   const projectId = import.meta.env.VITE_WEB3MODAL_PROJECT_ID;
 
   $providers = {
+    [goerli.id]: new ethers.providers.JsonRpcProvider(goerli.rpcUrls.default.http[0]),
     [sepolia.id]: new ethers.providers.JsonRpcProvider(sepolia.rpcUrls.default.http[0]),
     // [taiko.id]: new ethers.providers.JsonRpcProvider(taiko.rpcUrls.default.http[0]),
     [foundry.id]: new ethers.providers.JsonRpcProvider(foundry.rpcUrls.default.http[0]),
@@ -33,7 +34,7 @@
     ),
   };
   const { chains, provider } = configureChains(
-    [sepolia, foundry, gnosis, mumbai, scroll_testnet, linea_testnet, thundercore_testnet],
+    [goerli, sepolia, foundry],
     [
       publicProvider(),
       // jsonRpcProvider({
@@ -52,7 +53,7 @@
   $web3Modal = new Web3Modal(
     {
       projectId,
-      defaultChain: sepolia,
+      defaultChain: goerli,
       themeVariables: {
         "--w3m-font-family": "Roboto, sans-serif",
         "--w3m-accent-color": "#000000",
