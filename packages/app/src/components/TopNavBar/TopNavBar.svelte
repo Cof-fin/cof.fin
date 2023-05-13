@@ -31,7 +31,7 @@
   {#if screenSize >= breakpoints.large}
     <header-logo>
       <img src={Logo} alt="logo" width="100px" height="100px" />
-      <header-icon>PROJECT_NAME</header-icon>
+      <header-icon>COF.FIN</header-icon>
     </header-logo>
     <header-tabs>
       <header-item>
