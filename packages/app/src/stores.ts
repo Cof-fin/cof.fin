@@ -17,6 +17,7 @@ export const input = writable<string>("");
 export const activeTab = writable<string>("Deposit");
 
 export const ghoBalance = writable<BigNumber>();
+export const vaultGhoBalance = writable<BigNumber>();
 export const usdcBalance = writable<BigNumber>();
 export const ethBalance = writable<BigNumber>();
 export const ethData = writable<{ date: number; value: number }[]>();

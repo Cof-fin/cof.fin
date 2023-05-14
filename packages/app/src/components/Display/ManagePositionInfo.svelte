@@ -1,11 +1,33 @@
 <script lang="ts">
   import ManagePositionLine from "./ManagePositionLine.svelte";
   import OptimalRangeLine from "./OptimalRangeLine.svelte";
+
+  import { readGho } from "../../generated";
+
+  import { onMount } from "svelte";
+
+  import { vaultGhoBalance } from "../../stores";
+  import { formatEther } from "ethers/lib/utils.js";
+
+  onMount(async () => {
+    vaultGhoBalance.set(
+      await readGho({
+        functionName: "balanceOf",
+        args: ["0x80b74cd7ca2ffe55fd95e8d4e9078f1b069717af"],
+      })
+    );
+    console.log($vaultGhoBalance);
+  });
 </script>
 
 <div class="vertical-container">
   <title>Position Details</title>
-  <ManagePositionLine lineInfo={{ name: "GHO", value: "0" }} />
+  <ManagePositionLine
+    lineInfo={{
+      name: "GHO",
+      value: $vaultGhoBalance ? formatEther($vaultGhoBalance).toString() : "0",
+    }}
+  />
   <ManagePositionLine lineInfo={{ name: "ETH", value: "0" }} />
   <ManagePositionLine lineInfo={{ name: "Range (Upper)", value: "0" }} />
   <ManagePositionLine lineInfo={{ name: "Range (Lower)", value: "0" }} />

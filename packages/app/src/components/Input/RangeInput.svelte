@@ -1,6 +1,6 @@
 <script lang="ts">
-  let min: number = 0;
-  let max: number = 100;
+  let min: number = 1749.84;
+  let max: number = 1960.33;
 </script>
 
 <container>
