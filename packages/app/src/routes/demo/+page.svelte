@@ -3,6 +3,7 @@
   import Tab from "../../components/Tab/Tab.svelte";
   import { activeTab, signature, typedSignature } from "../../stores";
   import USDCETHIcon from "../../public/images/ethusdc.png";
+  import GHOETHIcon from "../../public/images/ethgho.png";
   import USDCIcon from "../../public/images/usdc24.png";
   import ETHIcon from "../../public/images/eth24.png";
   import LineChart from "../../components/Chart/LineChart.svelte";
@@ -78,7 +79,7 @@
 </script>
 
 <VerticalStack>
-  <title><img src={USDCETHIcon} alt={USDCETHIcon} /> ETH/USDC POOL OPTIMIZER</title>
+  <title><img src={GHOETHIcon} alt={GHOETHIcon} /> ETH/GHO POOL OPTIMIZER</title>
   <Tab />
 
   <container>
