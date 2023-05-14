@@ -94,14 +94,18 @@
         <DepositButton />
       </div>
     {:else if $activeTab === "Withdraw"}
-      <div><LineChart /></div>
+      {#if $ethData}
+        <div><LineChart data={$ethData} /></div>
+      {/if}
       <div class="deposit-form">
         <InputBoxWithBalance icon={""} name={"cf-USDC/ETH"} balance={1000} />
         <WithdrawInfo />
         <WithdrawButton />
       </div>
     {:else if $activeTab === "Manage"}
-      <div><LineChart /></div>
+      {#if $ethData}
+        <div><LineChart data={$ethData} /></div>
+      {/if}
       <div class="deposit-form">
         <ManagePositionInfo />
         <RangeInput />
@@ -119,8 +123,8 @@
     font-weight: 700;
     font-size: 30px;
     line-height: 36px;
-    padding-top: 20px;
-    padding-bottom: 40px;
+    padding-top: 0px;
+    padding-bottom: 20px;
     /* identical to box height, or 120% */
 
     display: flex;
