@@ -19,3 +19,9 @@ export const activeTab = writable<string>("Deposit");
 export const ghoBalance = writable<BigNumber>();
 export const usdcBalance = writable<BigNumber>();
 export const ethBalance = writable<BigNumber>();
+export const ethData = writable<{ date: number; value: number }[]>();
+
+export const bblu = writable<number>();
+export const bbll = writable<number>();
+export const bbhu = writable<number>();
+export const bbhl = writable<number>();

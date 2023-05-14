@@ -1,14 +1,14 @@
 <script lang="ts">
   interface LineInfo {
     name: string;
-    value: string;
+    value: number;
   }
   export let lineInfo: LineInfo;
 </script>
 
 <container>
   <info-name>{lineInfo.name}</info-name>
-  <info-value>{lineInfo.value}</info-value>
+  <info-value>{lineInfo.value?.toFixed(2)}</info-value>
 </container>
 
 <style lang="scss">

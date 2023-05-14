@@ -19,14 +19,14 @@
   import { readGho, readUsdc } from "../../generated";
   import { onMount } from "svelte";
   import { fetchBalance, getAccount } from "@wagmi/core";
-  import { ghoBalance, usdcBalance, ethBalance } from "../../stores";
+  import { ghoBalance, usdcBalance, ethBalance, ethData } from "../../stores";
   import { client } from "../../components/GraphQL/Client";
   import { gql } from "@apollo/client";
 
   const query = `
   query {
     token(id: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2") {
-      tokenDayData(where: { date_gt: 1683420522 }) {
+      tokenDayData(where: { date_gt: 1681433322 }) {
         priceUSD
         open
         volumeUSD
@@ -58,7 +58,17 @@
         .query({
           query: gql(query),
         })
-        .then((data) => console.log("Subgraph data: ", data))
+        .then((data) => {
+          console.log("Data: ", data);
+          let formattedData = data.data.token.tokenDayData.map((item: any) => {
+            return {
+              date: item.date,
+              value: item.priceUSD,
+            };
+          });
+          console.log("🚀 | formattedData | formattedData:", formattedData);
+          ethData.set(formattedData);
+        })
         .catch((err) => {
           console.log("Error fetching data: ", err);
         });
@@ -72,7 +82,9 @@
 
   <container>
     {#if $activeTab === "Deposit"}
-      <div><LineChart /></div>
+      {#if $ethData}
+        <div><LineChart data={$ethData} /></div>
+      {/if}
       <div class="deposit-form">
         <InputBoxWithBalance icon={USDCIcon} name={"USDC"} balance={$usdcBalance} />
         <InputBoxWithBalance icon={ETHIcon} name={"ETH"} balance={$ethBalance} />

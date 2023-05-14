@@ -21,7 +21,7 @@
     <div class="input-balance">
       <input-header-balance on:click={() => (value = Number(balance))}
         >Balance: {balance
-          ? formatUnits(balance, name === "USDC" ? 6 : 18)
+          ? Number(formatUnits(balance, name === "USDC" ? 6 : 18)).toFixed(2)
           : 0}</input-header-balance
       >
     </div>
