@@ -6,7 +6,7 @@
 
   import { onMount } from "svelte";
 
-  import { vaultGhoBalance } from "../../stores";
+  import { leverageValue, vaultGhoBalance } from "../../stores";
   import { formatEther } from "ethers/lib/utils.js";
 
   onMount(async () => {
@@ -29,12 +29,12 @@
     }}
   />
   <ManagePositionLine lineInfo={{ name: "ETH", value: "0" }} />
-  <ManagePositionLine lineInfo={{ name: "Range (Upper)", value: "0" }} />
-  <ManagePositionLine lineInfo={{ name: "Range (Lower)", value: "0" }} />
+  <ManagePositionLine lineInfo={{ name: "Range (Upper)", value: "1960.33" }} />
+  <ManagePositionLine lineInfo={{ name: "Range (Lower)", value: "1749.84" }} />
   <ManagePositionLine lineInfo={{ name: "Yield USDC", value: "0" }} />
   <ManagePositionLine lineInfo={{ name: "Yield ETH", value: "0" }} />
-  <ManagePositionLine lineInfo={{ name: "Leverage", value: "0" }} />
-  <ManagePositionLine lineInfo={{ name: "Collateral", value: "0" }} />
+  <ManagePositionLine lineInfo={{ name: "Leverage", value: $leverageValue }} />
+  <ManagePositionLine lineInfo={{ name: "Collateral", value: "TBD" }} />
 </div>
 
 <style lang="scss">

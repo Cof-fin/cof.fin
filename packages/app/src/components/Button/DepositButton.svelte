@@ -18,7 +18,7 @@
     let tx = await writeCoffin({
       functionName: "createLeveragedPositionETH",
       args: [position],
-      overrides: { value: ethers.utils.parseEther("0.05") },
+      overrides: { value: ethers.utils.parseEther($ethInput) },
     });
     console.log("🚀 | lethandleClick: | tx:", tx);
   };

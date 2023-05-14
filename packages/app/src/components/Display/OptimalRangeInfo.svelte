@@ -4,10 +4,10 @@
 </script>
 
 <div class="vertical-container">
-  <OptimalRangeLine lineInfo={{ name: "Long Time Frame BB (7 Days) Upper Bound", value: $bbhu }} />
-  <OptimalRangeLine lineInfo={{ name: "Long Time Frame BB (7 Days) Lower Bound", value: $bbhl }} />
-  <OptimalRangeLine lineInfo={{ name: "Short Time Frame BB (3 Days) Upper Bound", value: $bblu }} />
-  <OptimalRangeLine lineInfo={{ name: "Short Time Frame BB (3 Days) Lower Bound", value: $bbll }} />
+  <OptimalRangeLine lineInfo={{ name: "Bollinger Band (7 Days) Upper Bound", value: $bbhu }} />
+  <OptimalRangeLine lineInfo={{ name: "Bollinger Band (7 Days) Lower Bound", value: $bbhl }} />
+  <OptimalRangeLine lineInfo={{ name: "Bollinger Band (3 Days) Upper Bound", value: $bblu }} />
+  <OptimalRangeLine lineInfo={{ name: "Bollinger Band (3 Days) Lower Bound", value: $bbll }} />
 </div>
 
 <style lang="scss">
