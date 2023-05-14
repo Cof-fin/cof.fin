@@ -21,7 +21,12 @@ export const usdcBalance = writable<BigNumber>();
 export const ethBalance = writable<BigNumber>();
 export const ethData = writable<{ date: number; value: number }[]>();
 
+export const ethInput = writable<string>("");
+export const usdcInput = writable<string>("");
+
 export const bblu = writable<number>();
 export const bbll = writable<number>();
 export const bbhu = writable<number>();
 export const bbhl = writable<number>();
+
+export const leverageValue = writable<string>("1.0");

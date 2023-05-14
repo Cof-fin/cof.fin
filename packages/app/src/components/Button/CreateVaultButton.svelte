@@ -1,28 +1,12 @@
 <script lang="ts">
-  import { ethers } from "ethers";
-  import "../../generated";
-  import { writeCoffin } from "../../generated";
-  import { leverageValue, ethBalance, ethInput } from "../../stores";
+  import { writeCoffinFactory } from "../../generated";
   export let handleClick: () => void = async () => {
-    console.log($leverageValue);
-
-    const position = {
-      token: ethers.constants.AddressZero,
-      leverage: Math.round((Number($leverageValue) - 1) * 10000),
-      active: false,
-      amount: ethers.utils.parseEther("0"),
-    };
-    console.log("🚀 | lethandleClick: | position:", position);
-    console.log(ethers.utils.parseEther($ethInput));
-
-    let tx = await writeCoffin({
-      functionName: "createLeveragedPositionETH",
-      args: [position],
-      overrides: { value: ethers.utils.parseEther("0.05") },
-    });
+    let tx = await writeCoffinFactory({ functionName: "createNewVault" });
     console.log("🚀 | lethandleClick: | tx:", tx);
+    let results = await tx.wait();
+    console.log("🚀 | lethandleClick: | results:", results);
   };
-  export let buttonText = "DEPOSIT";
+  export let buttonText = "Create Vault";
 </script>
 
 <button on:click={handleClick}>

@@ -22,6 +22,7 @@
   import { ghoBalance, usdcBalance, ethBalance, ethData } from "../../stores";
   import { client } from "../../components/GraphQL/Client";
   import { gql } from "@apollo/client";
+  import CreateVaultButton from "../../components/Button/CreateVaultButton.svelte";
 
   const query = `
   query {
@@ -91,6 +92,7 @@
         <Slider />
         <RangeInput />
         <OptimalRangeInfo />
+        <CreateVaultButton />
         <DepositButton />
       </div>
     {:else if $activeTab === "Withdraw"}

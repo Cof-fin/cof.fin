@@ -2,12 +2,21 @@
   import type { BigNumber } from "ethers";
   import HorizontalStack from "../Stack/HorizontalStack.svelte";
   import { formatEther, formatUnits } from "ethers/lib/utils.js";
+  import { ethInput, usdcInput } from "../../stores";
 
   export let icon: string;
   export let name: string;
   export let balance: BigNumber;
 
   let value: number;
+
+  const handleOnChange = (event: any) => {
+    if (name === "USDC") {
+      usdcInput.set(event.target.value);
+    } else {
+      ethInput.set(event.target.value);
+    }
+  };
 </script>
 
 <container>
@@ -26,7 +35,7 @@
       >
     </div>
   </div>
-  <input type="number" bind:value />
+  <input type="number" bind:value on:change={handleOnChange} />
 </container>
 
 <style>

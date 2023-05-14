@@ -1,4 +1,4 @@
-import { GHO_ABI, USDC_ABI } from "./src/abi/abis";
+import { COFFIN_ABI, FACTORY_ABI, GHO_ABI, USDC_ABI } from "./src/abi/abis";
 import { actions, hardhat } from "@wagmi/cli/plugins";
 
 import { defineConfig } from "@wagmi/cli";
@@ -54,12 +54,27 @@ export default defineConfig({
       },
       name: "USDC",
     },
+    {
+      abi: FACTORY_ABI,
+      address: {
+        5: "0xb528bc8C6FAcE699fD9217a2b678baC207132a82",
+      },
+      name: "CoffinFactory",
+    },
+    {
+      abi: COFFIN_ABI,
+      address: {
+        5: "0x80b74cd7ca2ffe55fd95e8d4e9078f1b069717af",
+      },
+
+      name: "Coffin",
+    },
   ],
   plugins: [
-    hardhat({
-      project: "../contracts",
-      deployments: readDeployments(),
-    }),
+    // hardhat({
+    //   project: "../contracts",
+    //   deployments: readDeployments(),
+    // }),
     actions({
       watchContractEvent: true,
       prepareWriteContract: true,

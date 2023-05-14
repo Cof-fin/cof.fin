@@ -3,6 +3,8 @@
   export let min: number = 1;
   export let max: number = 1.8;
   export let step: number = 0.1;
+
+  import { leverageValue } from "../../stores";
 </script>
 
 <container>
@@ -10,7 +12,7 @@
     <slider-title>Leverage</slider-title>
     <slider-leverage-amount>{value}x</slider-leverage-amount>
   </div>
-  <input type="range" bind:value {min} {max} {step} />
+  <input type="range" bind:value on:change={() => ($leverageValue = value)} {min} {max} {step} />
 </container>
 
 <style lang="scss">
