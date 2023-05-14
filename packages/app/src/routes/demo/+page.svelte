@@ -13,6 +13,57 @@
   import DepositButton from "../../components/Button/DepositButton.svelte";
   import WithdrawInfo from "../../components/Display/WithdrawInfo.svelte";
   import WithdrawButton from "../../components/Button/WithdrawButton.svelte";
+  import ManagePositionInfo from "../../components/Display/ManagePositionInfo.svelte";
+  import RebalanceButton from "../../components/Button/RebalanceButton.svelte";
+
+  import { readGho, readUsdc } from "../../generated";
+  import { onMount } from "svelte";
+  import { fetchBalance, getAccount } from "@wagmi/core";
+  import { ghoBalance, usdcBalance, ethBalance } from "../../stores";
+  import { client } from "../../components/GraphQL/Client";
+  import { gql } from "@apollo/client";
+
+  const query = `
+  query {
+    token(id: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2") {
+      tokenDayData(where: { date_gt: 1683420522 }) {
+        priceUSD
+        open
+        volumeUSD
+        volume
+        untrackedVolumeUSD
+        totalValueLockedUSD
+        totalValueLocked
+        feesUSD
+        date
+      }
+    }
+  }
+`;
+
+  onMount(async () => {
+    let { address } = await getAccount();
+
+    if (address) {
+      ghoBalance.set(await readGho({ functionName: "balanceOf", args: [address] }));
+      console.log($ghoBalance);
+      usdcBalance.set(await readUsdc({ functionName: "balanceOf", args: [address] }));
+      console.log($usdcBalance);
+      ethBalance.set((await fetchBalance({ address: address })).value);
+      console.log($ethBalance);
+    }
+
+    if (client) {
+      client
+        .query({
+          query: gql(query),
+        })
+        .then((data) => console.log("Subgraph data: ", data))
+        .catch((err) => {
+          console.log("Error fetching data: ", err);
+        });
+    }
+  });
 </script>
 
 <VerticalStack>
@@ -23,8 +74,8 @@
     {#if $activeTab === "Deposit"}
       <div><LineChart /></div>
       <div class="deposit-form">
-        <InputBoxWithBalance icon={USDCIcon} name={"USDC"} balance={1000} />
-        <InputBoxWithBalance icon={ETHIcon} name={"ETH"} balance={1000} />
+        <InputBoxWithBalance icon={USDCIcon} name={"USDC"} balance={$usdcBalance} />
+        <InputBoxWithBalance icon={ETHIcon} name={"ETH"} balance={$ethBalance} />
         <Slider />
         <RangeInput />
         <OptimalRangeInfo />
@@ -37,7 +88,15 @@
         <WithdrawInfo />
         <WithdrawButton />
       </div>
-    {:else if $activeTab === "Manage"}{/if}
+    {:else if $activeTab === "Manage"}
+      <div><LineChart /></div>
+      <div class="deposit-form">
+        <ManagePositionInfo />
+        <RangeInput />
+        <OptimalRangeInfo />
+        <RebalanceButton />
+      </div>
+    {/if}
   </container>
 </VerticalStack>
 

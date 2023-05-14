@@ -1,18 +1,13 @@
 <script lang="ts">
+  import type { BigNumber } from "ethers";
   import HorizontalStack from "../Stack/HorizontalStack.svelte";
+  import { formatEther, formatUnits } from "ethers/lib/utils.js";
 
   export let icon: string;
   export let name: string;
-  export let balance: number = 10000;
+  export let balance: BigNumber;
 
   let value: number;
-
-  function handleInput(event: InputEvent) {
-    const newValue = Number((event.target as HTMLInputElement).value);
-    if (!isNaN(newValue)) {
-      value = newValue;
-    }
-  }
 </script>
 
 <container>
@@ -24,8 +19,10 @@
       {/if}
     </div>
     <div class="input-balance">
-      <input-header-balance on:click={() => (value = balance)}
-        >Balance: {balance}</input-header-balance
+      <input-header-balance on:click={() => (value = Number(balance))}
+        >Balance: {balance
+          ? formatUnits(balance, name === "USDC" ? 6 : 18)
+          : 0}</input-header-balance
       >
     </div>
   </div>

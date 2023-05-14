@@ -1,3 +1,4 @@
+import { GHO_ABI, USDC_ABI } from "./src/abi/abis";
 import { actions, hardhat } from "@wagmi/cli/plugins";
 
 import { defineConfig } from "@wagmi/cli";
@@ -38,7 +39,22 @@ readDeployments();
 
 export default defineConfig({
   out: "src/generated.ts",
-  contracts: [],
+  contracts: [
+    {
+      abi: GHO_ABI,
+      address: {
+        5: "0xcbE9771eD31e761b744D3cB9eF78A1f32DD99211",
+      },
+      name: "GHO",
+    },
+    {
+      abi: USDC_ABI,
+      address: {
+        5: "0x69305b943C6F55743b2Ece5c0b20507300a39FC3",
+      },
+      name: "USDC",
+    },
+  ],
   plugins: [
     hardhat({
       project: "../contracts",

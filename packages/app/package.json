@@ -16,6 +16,7 @@
 		"wagmi": "pnpm exec wagmi generate"
 	},
 	"devDependencies": {
+		"@graphprotocol/client-cli": "^2.2.22",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.15.7",
 		"@types/d3": "^7.4.0",
@@ -37,6 +38,7 @@
 		"vite-plugin-node-polyfills": "^0.7.0"
 	},
 	"dependencies": {
+		"@apollo/client": "^3.7.14",
 		"@fontsource/courier-prime": "^4.5.9",
 		"@fontsource/poppins": "^4.5.10",
 		"@picocss/pico": "^1.5.9",
@@ -47,6 +49,7 @@
 		"@web3modal/html": "^2.3.3",
 		"d3": "^7.8.4",
 		"ethers": "^5.7.2",
+		"graphql": "^16.6.0",
 		"svelte-loading-spinners": "^0.3.4"
 	}
 }

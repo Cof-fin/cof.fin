@@ -1,9 +1,9 @@
+import type { BigNumber, ethers } from "ethers";
 import { readable, writable } from "svelte/store";
 
 import type { Client } from "@wagmi/core";
 import type { EthereumClient } from "@web3modal/ethereum";
 import type { Web3Modal } from "@web3modal/html";
-import type { ethers } from "ethers";
 
 export const ethereumClient = writable<EthereumClient>();
 export const wagmiClient = writable<Client>();
@@ -15,3 +15,7 @@ export const typedSignature = writable<string>("");
 export const input = writable<string>("");
 
 export const activeTab = writable<string>("Deposit");
+
+export const ghoBalance = writable<BigNumber>();
+export const usdcBalance = writable<BigNumber>();
+export const ethBalance = writable<BigNumber>();
